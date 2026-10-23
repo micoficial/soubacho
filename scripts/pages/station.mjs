@@ -22,7 +22,7 @@ export function renderStation(st, ctx) {
   if (ok(s.kodate)) lines.push(`戸建ては約${yen(s.kodate.p.med)}です。`);
 
   const cities = (st.cities || []).slice(0, 10);
-  const cityHtml = cities.length > 1 ? `<p class="note">この駅が最寄りの取引がある市区町村：${cities.map((x) => `<a href="${href(`city/${x.c.code}/`)}">${esc(x.c.name)}</a>（${comma(x.n)}件）`).join('、')}</p>` : '';
+  const cityHtml = cities.length > 1 ? `<p class="note">この駅が最寄りの取引がある市区町村（直近10年の件数）：${cities.map((x) => `<a href="${href(`city/${x.c.code}/`)}">${esc(x.c.name)}</a>（${comma(x.n)}件）`).join('、')}</p>` : '';
   const ds = (st.districts || []).slice(0, 20);
   const dHtml = ds.length ? `<section class="sec"><h2>${esc(label)}が最寄りの地区</h2><ul class="chips">${ds.map((x) => `<li>${x.d.page ? `<a href="${href(x.d.path)}">${esc(x.d.name)}</a>` : esc(x.d.name)}<small>${esc(ctx.cities[x.d.city].name)}・${comma(x.n)}件</small></li>`).join('')}</ul></section>` : '';
   const near = (st.near || []).slice(0, 24);
