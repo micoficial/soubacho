@@ -8,8 +8,10 @@
 
   const norm = (s) => s.normalize('NFKC').toLowerCase()
     .replace(/[ァ-ヶ]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0x60))
-    .replace(/ケ/g, 'け').replace(/[\s・･.,，、。\-‐－—―〜~'’"“”]/g, '');
-  const normQ = (s) => norm(s).replace(/駅$/, '').replace(/(駅)?(周辺|の?相場|マンション|土地|坪単価|地価)+$/, '');
+    .replace(/[ゖヵ]/g, (c) => (c === 'ゖ' ? 'け' : 'か')).replace(/[\s・･.,，、。\-‐－—―〜~'’"“”]/g, '');
+  // 「武蔵小杉駅 マンション 相場」のような検索語から、地名だけを取り出す
+  const WORDS = /(中古|新築)?(マンション|一戸建て|戸建て?|土地|坪単価|地価|相場|価格|売買|取引|周辺|推移|ランキング|いくら)/g;
+  const normQ = (s) => norm(s.normalize('NFKC').replace(WORDS, ' ').replace(/駅(?=\s|$)/g, ' ').replace(/(の|で)(?=\s|$)/g, ' ').trim());
 
   function load() {
     if (index) return Promise.resolve(index);
