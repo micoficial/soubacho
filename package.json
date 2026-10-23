@@ -1,0 +1,12 @@
+{
+  "name": "machi-soubacho",
+  "private": true,
+  "type": "module",
+  "description": "まちの相場帳：国土交通省の不動産取引価格を市区町村・駅・町ごとの相場にまとめる静的サイト",
+  "scripts": {
+    "fetch": "bash scripts/fetch.sh",
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
