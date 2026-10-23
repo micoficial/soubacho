@@ -29,7 +29,7 @@ node scripts/serve.mjs     # http://localhost:4175/soubacho/ で確認
 - 国のサイトのダウンロードは画面の操作が要る（画面の裏の API を直接使うのは利用規約 第6条に触れるので使わない。公式 API はキーの申請が要るうえ、説明書の出力項目に最寄駅が無い）
 - そこで、このPCの Edge を画面なしで動かして、人が押すのと同じ操作でダウンロードする：`node scripts/download-reinfolib.mjs --current 20261`（新しい四半期が無ければ `no-new-data`）
 - 取った ZIP はリリース `data-latest` に置き、GitHub Actions はそれでサイトを作る：`GH_TOKEN=... bash scripts/refresh-data.sh data/raw/All_20053_20262.zip`
-- このPCのタスク スケジューラ（`mico-soubacho-data-refresh`）が毎週月曜9時30分に `scripts/scheduled-refresh.sh` を実行し、新しい四半期が出ていれば上の2つを続けて行う。記録は `data/refresh.log`
+- このPCのタスク スケジューラ（`mico-soubacho-data-refresh`）が毎週月曜10時に `scripts/scheduled-refresh.sh` を実行し、新しい四半期が出ていれば上の2つを続けて行う。記録は `data/refresh.log`
 - 手で取るとき：国のサイトの「不動産価格（取引価格・成約価格）情報の検索・ダウンロード」で、全都道府県・すべて・2005年第3四半期〜最新を選んでダウンロード → `refresh-data.sh` に渡す
 
 ## 仕組み

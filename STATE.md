@@ -22,7 +22,7 @@
 - 公式 API（XIT001）は利用申請のキーが要る。しかも説明書の出力項目に**最寄駅が無い**ので、キーがあっても駅のページは作れない
 - そこで、このPCの Edge を画面なしで動かし、人が押すのと同じ操作（全都道府県・すべて・2005年第3四半期〜最新 → ダウンロード）で ZIP を取る：`scripts/download-reinfolib.mjs`。2026-10-23 に手で取ったものとバイト単位で同じファイルが取れることを確かめた（約7分、182MB）
 - 取った ZIP はリリース `data-latest` に置き、GitHub Actions はそれでサイトを作る（`scripts/fetch.sh`）
-- タスク スケジューラ `mico-soubacho-data-refresh`：毎週月曜9時30分（PCが切れていたら次に起動したとき）に `scripts/scheduled-refresh.sh` → 新しい四半期があれば取得 → `scripts/refresh-data.sh` で控えを差し替え → 作り直し。記録は `data/refresh.log`。2026-10-23 にタスクから実行して「新しいデータはありません」で正常終了を確認
+- タスク スケジューラ `mico-soubacho-data-refresh`：毎週月曜10時（PCが切れていたら次に起動したとき）に `scripts/scheduled-refresh.sh` → 新しい四半期があれば取得 → `scripts/refresh-data.sh` で控えを差し替え → 作り直し。記録は `data/refresh.log`。2026-10-23 にタスクから実行して「新しいデータはありません」で正常終了を確認
 - 手で更新するとき：`GH_TOKEN=$(gh auth token --user mico95official-create) bash scripts/refresh-data.sh <ZIPのパス>`
 
 ## 規約（不動産情報ライブラリ利用規約）
